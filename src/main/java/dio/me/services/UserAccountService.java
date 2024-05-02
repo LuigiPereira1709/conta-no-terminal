@@ -6,15 +6,20 @@ import main.java.dio.me.domain.Client;
 public final class UserAccountService {
 
     /**
-     * Registers a new user with the provided information.
+     * Creates a new account for the user with the provided information.
      *
      * @param firstName The first name of the user.
      * @param lastName  The last name of the user.
      * @param agency    The agency of the account.
      * @param balance   The initial balance of the account.
      * @return The newly created account.
+     * @throws IllegalArgumentException if any of the input parameters are invalid.
      */
-    public static Account registerUser(String firstName, String lastName, String agency, double balance) {
+    public static Account createAccount(String firstName, String lastName, String agency, double balance) {
+        if (firstName == null || lastName == null || agency == null || balance < 0) {
+            throw new IllegalArgumentException("Invalid input parameters for creating account.");
+        }
+
         Client client = Client.ClientBuilder.aClient()
                 .firstName(firstName)
                 .lastName(lastName)
@@ -33,9 +38,18 @@ public final class UserAccountService {
      *
      * @param accountData A string containing the account data in the format: id:agency:clientName:clientLastName:balance
      * @return The account associated with the provided data.
+     * @throws IllegalArgumentException if the account data is invalid or incomplete.
      */
     public static Account authenticateUser(String accountData) {
+        if (accountData == null || accountData.isEmpty()) {
+            throw new IllegalArgumentException("Invalid account data for authentication.");
+        }
+
         String[] fields = accountData.split(":");
+
+        if (fields.length != 7) {
+            throw new IllegalArgumentException("Invalid account data format for authentication.");
+        }
 
         Client client = Client.ClientBuilder.aClient()
                 .firstName(fields[2])
