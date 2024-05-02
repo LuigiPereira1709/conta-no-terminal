@@ -9,8 +9,9 @@ public final class UserAccountService {
      * Creates a new account for the user with the provided information.
      *
      * @param firstName The first name of the user.
-     * @param lastName  The last name of the user.
-     * @param balance   The initial balance of the account.
+     * @param lastName The last name of the user.
+     * @param agency The agency of the user
+     * @param balance The initial balance of the account.
      * @return The newly created account.
      * @throws IllegalArgumentException if any of the input parameters are invalid.
      */
