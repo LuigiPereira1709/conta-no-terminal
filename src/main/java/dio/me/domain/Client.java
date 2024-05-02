@@ -4,6 +4,12 @@ public class Client {
     private String firstName;
     private String lastName;
 
+    /**
+     * Constructs a new Client instance with the specified first name and last name.
+     *
+     * @param firstName The first name of the client.
+     * @param lastName  The last name of the client.
+     */
     private Client(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,6 +60,11 @@ public class Client {
             return this;
         }
 
+        /**
+         * Builds a new Client instance with the provided first name and last name.
+         *
+         * @return A new Client instance.
+         */
         public Client build() {
             return new Client(firstName, lastName);
         }
