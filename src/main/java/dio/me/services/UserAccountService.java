@@ -10,12 +10,11 @@ public final class UserAccountService {
      *
      * @param firstName The first name of the user.
      * @param lastName  The last name of the user.
-     * @param agency    The agency of the account.
      * @param balance   The initial balance of the account.
      * @return The newly created account.
      * @throws IllegalArgumentException if any of the input parameters are invalid.
      */
-    public static Account createAccount(String firstName, String lastName, String agency, double balance) {
+    public static Account createAccount(String firstName, String lastName,String agency, double balance) {
         if (firstName == null || lastName == null || agency == null || balance < 0) {
             throw new IllegalArgumentException("Invalid input parameters for creating account.");
         }
