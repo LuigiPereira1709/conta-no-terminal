@@ -1,7 +1,8 @@
 package main.java.dio.me.services.persistence;
 
-enum PersistenceOperation {
+public enum PersistenceOperation {
     SAVE,
     UPDATE,
-    DELETE
+    DELETE,
+    LOAD
 }
