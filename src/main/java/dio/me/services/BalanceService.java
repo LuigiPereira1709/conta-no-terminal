@@ -3,17 +3,39 @@ package main.java.dio.me.services;
 import main.java.dio.me.domain.Account;
 
 public class BalanceService {
-    public static void withdrawal(Account account, double withdrawal) {
-        System.out.printf("Before withdrawal your balance is %.2f%n", account.getBalance());
-        double newBalance = account.getBalance() - withdrawal;
+
+    /**
+     * Performs a withdrawal operation on the account.
+     *
+     * @param account    The account from which to withdraw funds.
+     * @param withdrawal The amount to withdraw.
+     * @return A string containing the original balance, withdrawal amount, and new balance in the format: oBalance:withdrawal:nBalance.
+     */
+    public static String withdrawFromAccount(Account account, double withdrawal) {
+        double originalBalance = account.getBalance();
+        double newBalance = originalBalance - withdrawal;
         account.setBalance(newBalance);
-        System.out.printf("After withdrawal your balance is %.2f%n", account.getBalance());
+        return String.format("%.2f:%.2f:%.2f",
+                originalBalance,
+                withdrawal,
+                newBalance);
     }
 
-    public static void deposit(Account account, double deposit){
-        System.out.printf("Before deposit your balance is %.2f%n", account.getBalance());
-        double newBalance = account.getBalance() + deposit;
+
+    /**
+     * Performs a deposit operation on the account.
+     *
+     * @param account The account to which to deposit funds.
+     * @param deposit The amount to deposit.
+     * @return A string containing the original balance, deposit amount, and new balance in the format: oBalance:deposit:nBalance.
+     */
+    public static String depositToAccount(Account account, double deposit) {
+        double originalBalance = account.getBalance();
+        double newBalance = originalBalance + deposit;
         account.setBalance(newBalance);
-        System.out.printf("After deposit your balance is %.2f%n", account.getBalance());
+        return String.format("%.2f:%.2f:%.2f",
+                originalBalance,
+                deposit,
+                newBalance);
     }
 }
