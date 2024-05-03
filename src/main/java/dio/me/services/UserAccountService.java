@@ -36,13 +36,13 @@ public final class UserAccountService {
                 .buildWithRandomId();
     }
 
-
     /**
-     * Authenticates a user using the provided account data.
+     * Authenticates a user using the provided account ID.
      *
-     * @param id A string containing the account data in the format: id:agency:clientName:clientLastName:balance
-     * @return The account associated with the provided data.
-     * @throws IllegalArgumentException if the account data is invalid or incomplete.
+     * @param id The ID of the account to authenticate.
+     * @return The authenticated account.
+     * @throws IllegalArgumentException if the provided account ID is invalid.
+     * @throws RuntimeException         if the account with the provided ID is not found.
      */
     public static Account authenticateUser(String id) {
         if (id == null || id.isEmpty()) {
@@ -69,6 +69,13 @@ public final class UserAccountService {
                 .buildWithId();
     }
 
+    /**
+     * Retrieves account data associated with the provided account ID.
+     *
+     * @param id The ID of the account to retrieve data for.
+     * @return A map containing the account data.
+     * @throws RuntimeException if the account with the provided ID is not found.
+     */
     private static Map<String, String> retrieveAccountData(String id) {
         Object data = FilePersistenceOperationFactory.createOperation(PersistenceOperation.LOAD).execute(null);
 
