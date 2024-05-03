@@ -64,14 +64,13 @@ public class Account {
      * @return A formatted string representation of the Account's details.
      */
     public String getAccount() {
-        return String.format(Locale.US, "%d:%s:%s:%s:%f:%s:%s",
+        return String.format(Locale.US, "%d:%s:%s:%s:%f:%s",
                 id,
                 agency,
                 client.getFirstName(),
                 client.getLastName(),
                 balance,
-                dateCreation,
-                LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                dateCreation);
     }
 
     public Long getId() {
