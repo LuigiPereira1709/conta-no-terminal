@@ -2,6 +2,10 @@ package main.java.dio.me.services;
 
 import main.java.dio.me.domain.Account;
 import main.java.dio.me.domain.Client;
+import main.java.dio.me.services.persistence.FilePersistenceOperationFactory;
+import main.java.dio.me.services.persistence.PersistenceOperation;
+
+import java.util.Map;
 
 public final class UserAccountService {
 
@@ -9,13 +13,13 @@ public final class UserAccountService {
      * Creates a new account for the user with the provided information.
      *
      * @param firstName The first name of the user.
-     * @param lastName The last name of the user.
-     * @param agency The agency of the user
-     * @param balance The initial balance of the account.
+     * @param lastName  The last name of the user.
+     * @param agency    The agency of the user
+     * @param balance   The initial balance of the account.
      * @return The newly created account.
      * @throws IllegalArgumentException if any of the input parameters are invalid.
      */
-    public static Account createAccount(String firstName, String lastName,String agency, double balance) {
+    public static Account createAccount(String firstName, String lastName, String agency, double balance) {
         if (firstName == null || lastName == null || agency == null || balance < 0) {
             throw new IllegalArgumentException("Invalid input parameters for creating account.");
         }
@@ -36,31 +40,46 @@ public final class UserAccountService {
     /**
      * Authenticates a user using the provided account data.
      *
-     * @param accountData A string containing the account data in the format: id:agency:clientName:clientLastName:balance
+     * @param id A string containing the account data in the format: id:agency:clientName:clientLastName:balance
      * @return The account associated with the provided data.
      * @throws IllegalArgumentException if the account data is invalid or incomplete.
      */
-    public static Account authenticateUser(String accountData) {
-        if (accountData == null || accountData.isEmpty()) {
+    public static Account authenticateUser(String id) {
+        if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("Invalid account data for authentication.");
         }
 
-        String[] fields = accountData.split(":");
-
-        if (fields.length != 7) {
-            throw new IllegalArgumentException("Invalid account data format for authentication.");
-        }
+        Map<String, String> accountData = retrieveAccountData(id);
+        String[] fullName = accountData.get("FullName").split(" ");
+        String agency = accountData.get("Agency");
+        String balance = accountData.get("Balance");
+        String dateCreation = accountData.get("dateCreation");
 
         Client client = Client.ClientBuilder.aClient()
-                .firstName(fields[2])
-                .lastName(fields[3])
+                .firstName(fullName[0])
+                .lastName(fullName[1])
                 .build();
 
         return Account.AccountBuilder.anAccount()
-                .id(Long.parseLong(fields[0]))
-                .agency(fields[1])
+                .id(Long.parseLong(id))
+                .agency(agency)
                 .client(client)
-                .balance(Double.parseDouble(fields[4]))
+                .balance(Double.parseDouble(balance))
+                .dateCreation(dateCreation)
                 .buildWithId();
+    }
+
+    private static Map<String, String> retrieveAccountData(String id) {
+        Object data = FilePersistenceOperationFactory.createOperation(PersistenceOperation.LOAD).execute(null);
+
+        Map<String, Object> mapData = (Map<String, Object>) data;
+
+        Map<String, Object> accountsMap = (Map<String, Object>) mapData.get("Accounts");
+
+        if (!accountsMap.containsKey(id)) {
+            throw new RuntimeException("Account with " + id + " not found");
+        }
+
+        return (Map<String, String>) accountsMap.get(id);
     }
 }
