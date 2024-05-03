@@ -6,6 +6,8 @@ import com.google.gson.JsonParser;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 class FilePersistenceService {
@@ -169,19 +171,21 @@ class FilePersistenceService {
      * @return The JSON string representing the account data.
      */
     private static String buildAccountJson(String pattern, PersistenceOperation operation) {
-        String[] parts = pattern.split(":");
+        String[] fields = pattern.split(":");
 
-        String accountId = parts[0];
-        String agency = parts[1];
-        String clientFirstName = parts[2];
-        String clientLastName = parts[3];
-        String balance = parts[4];
+        String accountId = fields[0];
+        String agency = fields[1];
+        String clientFirstName = fields[2];
+        String clientLastName = fields[3];
+        String balance = fields[4];
+        String dateCreation = fields[5];
 
-        Map<String, Object> account = new HashMap<>(Map.of(
-                "FullName", clientFirstName + " " + clientLastName,
-                "Agency", agency,
-                "Balance", balance
-        ));
+        HashMap<String, String> account = new HashMap<>();
+
+        account.put("Agency", agency);
+        account.put("FullName", clientFirstName + " " + clientLastName);
+        account.put("Balance", balance);
+        account.put("DateCreation", dateCreation);
 
         HashMap<String, Object> accountMap = new HashMap<>();
 
