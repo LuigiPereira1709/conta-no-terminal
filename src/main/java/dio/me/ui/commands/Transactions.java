@@ -35,9 +35,11 @@ public class Transactions implements Command<String> {
     @Override
     public String execute() {
         String data = transactionOperation.execute(account, amount);
-        update.execute(data);
+
+        update.execute(account.getAccount());
 
         String[] dataFields = data.split(":");
+        System.out.println(dataFields);
         double originalBalance = Double.parseDouble(dataFields[0]);
         double transactionAmount = Double.parseDouble(dataFields[1]);
         double newBalance = Double.parseDouble(dataFields[2]);
