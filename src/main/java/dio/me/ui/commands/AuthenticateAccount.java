@@ -13,7 +13,7 @@ public class AuthenticateAccount implements Command<Account> {
      * @param id the ID of the account to authenticate
      */
     public AuthenticateAccount(String id) {
-        this.id = id;
+        this.id = id.trim();
     }
 
     /**
