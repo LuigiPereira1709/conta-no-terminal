@@ -1,3 +1,94 @@
 {
-  "Accounts": {}
+  "Accounts": {
+    "1": {
+      "Agency": "Naruto",
+      "FullName": "Uzumaki Naruto",
+      "DateCreation": "2002-10-03",
+      "Balance": "10000.500000"
+    },
+    "2": {
+      "Agency": "One Piece",
+      "FullName": "Roronoa Zoro",
+      "DateCreation": "1999-10-20",
+      "Balance": "7500.750000"
+    },
+    "3": {
+      "Agency": "Dragon Ball",
+      "FullName": "Son Goku",
+      "DateCreation": "1986-02-26",
+      "Balance": "15000.250000"
+    },
+    "4": {
+      "Agency": "Bleach",
+      "FullName": "Kurosaki Ichigo",
+      "DateCreation": "2004-10-05",
+      "Balance": "8500.800000"
+    },
+    "5": {
+      "Agency": "Attack on Titan",
+      "FullName": "Eren Yeager",
+      "DateCreation": "2013-04-07",
+      "Balance": "2000.100000"
+    },
+    "6": {
+      "Agency": "My Hero Academia",
+      "FullName": "Izuku Midoriya",
+      "DateCreation": "2016-04-03",
+      "Balance": "12000.600000"
+    },
+    "7": {
+      "Agency": "One Punch Man",
+      "FullName": "Cape Baldy",
+      "DateCreation": "2015-10-05",
+      "Balance": "30000.400000"
+    },
+    "8": {
+      "Agency": "Fullmetal Alchemist",
+      "FullName": "Edward Elric",
+      "DateCreation": "2003-10-04",
+      "Balance": "8000.450000"
+    },
+    "9": {
+      "Agency": "Demon Slayer",
+      "FullName": "Tanjiro Kamado",
+      "DateCreation": "2019-04-06",
+      "Balance": "3500.200000"
+    },
+    "10": {
+      "Agency": "Death Note",
+      "FullName": "Light Yagami",
+      "DateCreation": "2006-10-04",
+      "Balance": "28000.550000"
+    },
+    "11": {
+      "Agency": "Tokyo Ghoul",
+      "FullName": "Ken Kaneki",
+      "DateCreation": "2014-07-03",
+      "Balance": "1500.150000"
+    },
+    "12": {
+      "Agency": "Hunter x Hunter",
+      "FullName": "Gon Freecss",
+      "DateCreation": "1999-10-16",
+      "Balance": "18000.700000"
+    },
+    "13": {
+      "Agency": "Sword Art Online",
+      "FullName": "Kirigaya Kazuto",
+      "DateCreation": "2012-07-08",
+      "Balance": "9500.250000"
+    },
+    "14": {
+      "Agency": "Fairy Tail",
+      "FullName": "Natsu Dragneel",
+      "DateCreation": "2009-10-12",
+      "Balance": "10500.350000"
+    },
+    "15": {
+      "Agency": "Demon Slayer",
+      "FullName": "Kyojuro Rengoku",
+      "DateCreation": "2019-04-06",
+      "Balance": "4000.300000"
+    }
+  }
 }
