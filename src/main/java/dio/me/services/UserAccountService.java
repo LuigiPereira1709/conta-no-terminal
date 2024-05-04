@@ -15,12 +15,11 @@ public final class UserAccountService {
      * @param firstName The first name of the user.
      * @param lastName  The last name of the user.
      * @param agency    The agency of the user
-     * @param balance   The initial balance of the account.
      * @return The newly created account.
      * @throws IllegalArgumentException if any of the input parameters are invalid.
      */
-    public static Account createAccount(String firstName, String lastName, String agency, double balance) {
-        if (firstName == null || lastName == null || agency == null || balance < 0) {
+    public static Account createAccount(String firstName, String lastName, String agency) {
+        if (firstName == null || lastName == null || agency == null) {
             throw new IllegalArgumentException("Invalid input parameters for creating account.");
         }
 
@@ -32,7 +31,6 @@ public final class UserAccountService {
         return Account.AccountBuilder.anAccount()
                 .client(client)
                 .agency(agency)
-                .balance(balance)
                 .buildWithRandomId();
     }
 
@@ -53,7 +51,7 @@ public final class UserAccountService {
         String[] fullName = accountData.get("FullName").split(" ");
         String agency = accountData.get("Agency");
         String balance = accountData.get("Balance");
-        String dateCreation = accountData.get("dateCreation");
+        String dateCreation = accountData.get("DateCreation");
 
         Client client = Client.ClientBuilder.aClient()
                 .firstName(fullName[0])
@@ -76,6 +74,7 @@ public final class UserAccountService {
      * @return A map containing the account data.
      * @throws RuntimeException if the account with the provided ID is not found.
      */
+    @SuppressWarnings("unchecked")
     private static Map<String, String> retrieveAccountData(String id) {
         Object data = FilePersistenceOperationFactory.createOperation(PersistenceOperation.LOAD).execute(null);
 
