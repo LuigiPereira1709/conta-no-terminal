@@ -39,16 +39,16 @@ public class Transactions implements Command<String> {
         update.execute(account.getAccount());
 
         String[] dataFields = data.split(":");
-        System.out.println(dataFields);
+
         double originalBalance = Double.parseDouble(dataFields[0]);
         double transactionAmount = Double.parseDouble(dataFields[1]);
         double newBalance = Double.parseDouble(dataFields[2]);
 
         if (transactionOperation.equals(TransactionOperation.WITHDRAWAL)) {
-            return String.format("Withdrawal successfully completed!%n%nPrevious Balance: $%.2f%nWithdrawal Amount: $%.2f%nNew Balance: $%.2f",
+            return String.format("Withdrawal successfully completed!%nPrevious Balance: $%.2f%nWithdrawal Amount: $%.2f%nNew Balance: $%.2f",
                     originalBalance, transactionAmount, newBalance);
         } else {
-            return String.format("Deposit successfully completed!%n%nPrevious Balance: $%.2f%nDeposit Amount: $%.2f%nNew Balance: $%.2f",
+            return String.format("Deposit successfully completed!%nPrevious Balance: $%.2f%nDeposit Amount: $%.2f%nNew Balance: $%.2f",
                     originalBalance, transactionAmount, newBalance);
         }
     }
