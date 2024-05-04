@@ -39,7 +39,12 @@ public class InputHandler {
         if (parser == null) {
             throw new IllegalArgumentException("Unsupported input type: " + type.getSimpleName());
         }
-        return parser.parse(input);
+        try {
+            return parser.parse(input);
+
+        } catch (NumberFormatException e) {
+            return getDefaultValueForNumericType(type);
+        }
     }
 
     /**
@@ -67,5 +72,24 @@ public class InputHandler {
          * @return the parsed value
          */
         T parse(String input);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> T getDefaultValueForNumericType(Class<T> type) {
+        if (type == Integer.class) {
+            return (T) Integer.valueOf(0);
+        } else if (type == Double.class) {
+            return (T) Double.valueOf(0.0);
+        } else if (type == Float.class) {
+            return (T) Float.valueOf(0.0f);
+        } else if (type == Long.class) {
+            return (T) Long.valueOf(0L);
+        } else if (type == Short.class) {
+            return (T) Short.valueOf((short) 0);
+        } else if (type == Byte.class) {
+            return (T) Byte.valueOf((byte) 0);
+        } else {
+            throw new IllegalArgumentException("Unsupported numeric input type: " + type.getSimpleName());
+        }
     }
 }
