@@ -15,17 +15,17 @@ public class BalanceService {
      * @throws IllegalArgumentException if the withdrawal amount is negative or exceeds the account balance.
      */
     public static String withdrawFromAccount(Account account, double withdrawal) {
-        if (withdrawal < 0) {
-            throw new IllegalArgumentException("Withdrawal amount cannot be negative.");
+        if (withdrawal <= 0) {
+            return "Withdrawal amount cannot be zero or negative.";
         }
         if (withdrawal > account.getBalance()) {
-            throw new IllegalArgumentException("Insufficient funds for withdrawal.");
+            return "Insufficient funds for withdrawal.";
         }
 
         double originalBalance = account.getBalance();
         double newBalance = originalBalance - withdrawal;
         account.setBalance(newBalance);
-        return String.format(Locale.US,"%.2f:%.2f:%.2f",
+        return String.format(Locale.US, "%.2f:%.2f:%.2f",
                 originalBalance,
                 withdrawal,
                 newBalance);
@@ -41,14 +41,14 @@ public class BalanceService {
      * @throws IllegalArgumentException if the deposit amount is negative.
      */
     public static String depositToAccount(Account account, double deposit) {
-        if (deposit < 0) {
-            throw new IllegalArgumentException("Deposit amount cannot be negative.");
+        if (deposit <= 0) {
+            return "Deposit amount cannot be zero or negative.";
         }
 
         double originalBalance = account.getBalance();
         double newBalance = originalBalance + deposit;
         account.setBalance(newBalance);
-        return String.format(Locale.US,"%.2f:%.2f:%.2f",
+        return String.format(Locale.US, "%.2f:%.2f:%.2f",
                 originalBalance,
                 deposit,
                 newBalance);
