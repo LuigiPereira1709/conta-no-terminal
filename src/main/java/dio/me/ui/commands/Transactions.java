@@ -36,6 +36,10 @@ public class Transactions implements Command<String> {
     public String execute() {
         String data = transactionOperation.execute(account, amount);
 
+        if (data.length() != 3) {
+            return data;
+        }
+
         update.execute(account.getAccount());
 
         String[] dataFields = data.split(":");
