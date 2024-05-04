@@ -23,9 +23,9 @@ public class CreateAccount implements Command<Account> {
      * @param agency    the agency of the account
      */
     public CreateAccount(String firstName, String lastName, String agency) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.agency = agency;
+        this.firstName = firstName.trim();
+        this.lastName = lastName.trim();
+        this.agency = agency.trim();
     }
 
     /**
