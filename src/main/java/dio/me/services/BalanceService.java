@@ -2,6 +2,8 @@ package main.java.dio.me.services;
 
 import main.java.dio.me.domain.Account;
 
+import java.util.Locale;
+
 public class BalanceService {
 
     /**
@@ -23,7 +25,7 @@ public class BalanceService {
         double originalBalance = account.getBalance();
         double newBalance = originalBalance - withdrawal;
         account.setBalance(newBalance);
-        return String.format("%.2f:%.2f:%.2f",
+        return String.format(Locale.US,"%.2f:%.2f:%.2f",
                 originalBalance,
                 withdrawal,
                 newBalance);
@@ -46,7 +48,7 @@ public class BalanceService {
         double originalBalance = account.getBalance();
         double newBalance = originalBalance + deposit;
         account.setBalance(newBalance);
-        return String.format("%.2f:%.2f:%.2f",
+        return String.format(Locale.US,"%.2f:%.2f:%.2f",
                 originalBalance,
                 deposit,
                 newBalance);
