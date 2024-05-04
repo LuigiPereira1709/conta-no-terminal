@@ -1,8 +1,8 @@
 package main.java.dio.me.domain;
 
 public class Client {
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     /**
      * Constructs a new Client instance with the specified first name and last name.
@@ -27,16 +27,8 @@ public class Client {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public static final class ClientBuilder {
