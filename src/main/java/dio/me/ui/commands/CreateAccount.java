@@ -11,7 +11,6 @@ public class CreateAccount implements Command<Account> {
     private final String firstName;
     private final String lastName;
     private final String agency;
-    private final double balance;
 
     @SuppressWarnings("rawtypes")
     private final PersistencePerform save = createOperation(SAVE);
@@ -22,13 +21,11 @@ public class CreateAccount implements Command<Account> {
      * @param firstName the first name of the account holder
      * @param lastName  the last name of the account holder
      * @param agency    the agency of the account
-     * @param balance   the initial balance of the account
      */
-    public CreateAccount(String firstName, String lastName, String agency, double balance) {
+    public CreateAccount(String firstName, String lastName, String agency) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.agency = agency;
-        this.balance = balance;
     }
 
     /**
@@ -38,7 +35,7 @@ public class CreateAccount implements Command<Account> {
      */
     @Override
     public Account execute() {
-        Account account = createAccount(firstName, lastName, agency, balance);
+        Account account = createAccount(firstName, lastName, agency);
         save.execute(account.getAccount());
         System.out.printf("Account created successfully. Account ID: %d%n", account.getId());
         return account;
