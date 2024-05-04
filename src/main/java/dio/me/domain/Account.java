@@ -3,12 +3,10 @@ package main.java.dio.me.domain;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Account {
     private final Long id;
-    private final Set<String> agencies = Set.of("001", "123-4", "9876", "555-0");
     private String agency;
     private final Client client;
     private double balance;
@@ -18,15 +16,13 @@ public class Account {
      * Constructs a new Account instance with a random ID and the specified client, agency, and balance.
      * The creation date is set to the current date and time.
      *
-     * @param client  The client associated with the account.
-     * @param agency  The agency of the account.
-     * @param balance The initial balance of the account.
+     * @param client The client associated with the account.
+     * @param agency The agency of the account.
      */
-    private Account(Client client, String agency, double balance) {
+    private Account(Client client, String agency) {
         this.id = ThreadLocalRandom.current().nextLong(1, 9999);
         this.client = client;
         this.agency = agency;
-        this.balance = balance;
         this.dateCreation = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
@@ -75,10 +71,6 @@ public class Account {
 
     public Long getId() {
         return this.id;
-    }
-
-    public Set<String> getAgencies() {
-        return agencies;
     }
 
     public String getAgency() {
@@ -150,7 +142,7 @@ public class Account {
          * @return A new Account instance.
          */
         public Account buildWithRandomId() {
-            return new Account(client, agency, balance);
+            return new Account(client, agency);
         }
 
         /**
