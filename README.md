@@ -32,18 +32,6 @@ O projeto ContaBanco recebe dados via terminal e contém as características de 
 3. **Exibição de Mensagem:**
    - Após inserir todos os dados necessários, o sistema exibirá uma mensagem de agradecimento contendo as informações da conta recém-criada.
 
-## Tecnologias Utilizadas
-
-- Java 17
-- IntelliJ IDEA (ou IDE de sua preferência)
-
-## Autor
-
-- Luigi Pereira
-
-## DIO - Trilha Java Básico
-www.dio.me
-
 ## Contas Padrão
 
 Aqui estão as informações das contas padrão disponíveis para acesso no sistema:
@@ -67,3 +55,15 @@ Aqui estão as informações das contas padrão disponíveis para acesso no sist
 | 15 | Kyojuro Rengoku |
 
 Estas contas estão associadas a alguns dos personagens mais populares de anime e mangá.
+
+## Tecnologias Utilizadas
+
+- Java 17
+- IntelliJ IDEA (ou IDE de sua preferência)
+
+## Autor
+
+- Luigi Pereira
+
+## DIO - Trilha Java Básico
+www.dio.me
